@@ -47,6 +47,18 @@ TODO: container
 
 ## Actions
 - onEventSigned
+- onEventCanceled
+- onEventError
+- onEventInvalid
+
+```handlebars
+{{hello-sign
+  url=signUrl
+  onEventInvalid='onEventInvalid'
+  onEventCanceled='onEventCanceled'
+  onEventError='onEventError'
+  onEventSigned='onEventSigned'}}
+```
 
 ```javascript
 import Ember from 'ember';
@@ -58,16 +70,31 @@ export default Ember.Controller.extend({
      */
     onEventSigned: function() {
       // Do stuff after user signs.
+    },
+
+    /**
+     * Calls when user closes/cancels document.
+     */
+    onEventCanceled: function() {
+      // Do stuff
+    },
+
+    /**
+     * Calls when there's invalid response.
+     */
+    onEventInvalid: function() {
+      // Do stuff
+    },
+
+    /**
+     * Calls when there's error response.
+     */
+    onEventError: function() {
+      // Do stuff
     }
   }
 });
 ```
-
-TODO:
-- onEventCanceled
-- onEventError
-- onEventInvalid
-
 
 ## Contributing
 PRs welcome!
