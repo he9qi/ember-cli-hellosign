@@ -7,7 +7,7 @@ This Ember CLI addon provides a component for adding [HelloSign](https://www.hel
 
 ## Installation
 ```sh
-ember install ember-hellosign
+ember install ember-cli-hellosign
 ```
 
 ## Setup

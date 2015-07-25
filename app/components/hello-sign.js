@@ -1,1 +1,1 @@
-export { default } from 'ember-hellosign/components/hello-sign';
+export { default } from 'ember-cli-hellosign/components/hello-sign';

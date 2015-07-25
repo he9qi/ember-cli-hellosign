@@ -1,7 +1,7 @@
 {
-  "name": "ember-hellosign",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "name": "ember-cli-hellosign",
+  "version": "0.0.1",
+  "description": "HelloSign for Ember.",
   "directories": {
     "doc": "doc",
     "test": "tests"

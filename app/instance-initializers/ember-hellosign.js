@@ -2,7 +2,7 @@ import Ember from "ember";
 import ENV from '../config/environment';
 
 export default {
-  name: 'ember-hellosign',
+  name: 'ember-cli-hellosign',
 
   initialize: function(instance) {
 

@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-hellosign',
+  name: 'ember-cli-hellosign',
 
   contentFor: function (name) {
     if (name == 'body') {
