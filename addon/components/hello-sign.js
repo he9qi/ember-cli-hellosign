@@ -49,18 +49,12 @@ export default Ember.Component.extend({
   skipDomainVerification: false,
 
   /**
-   * A DOM element from the page in which the iFrame will be
-   * inserted (default is document.body)
-   */
-  container: document.body,
-
-  /**
    * The height of the iFrame in pixels.
    * NOTE: Only applicable when a container is specified.
    */
   height: 640,
 
-  
+
   /**
    * Initialize HelloSign with api key. Then open embedded
    * HelloSign signing form
@@ -81,7 +75,11 @@ export default Ember.Component.extend({
 
     var options = this.getProperties([
       'allowCancel',
-      'url'
+      'url',
+      'redirectUrl',
+      'debug',
+      'skipDomainVerification',
+      'height'
     ]);
 
     HelloSign.open($.extend(options, {

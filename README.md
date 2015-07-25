@@ -7,7 +7,7 @@ This Ember CLI addon provides a component for adding HelloSign's Embedded Signin
 
 ## Installation
 ```sh
-npm install ember-hellosign --save-dev
+ember install ember-hellosign
 ```
 
 ## Setup
@@ -29,17 +29,17 @@ ENV.HelloSign = {
 }}
 ```
 
-### Heavier Usage TODO:
+### Heavier Usage
 ```handlebars
 {{hello-sign
   url=signUrl
   allowCancel=false
   debug=true
   skipDomainVerification=true
-  container=document.getElementById('myHSContainer')
   height=320
 }}
 ```
+TODO: container
 
 ## Actions
 - onEventSigned
