@@ -16,6 +16,10 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    HelloSign:  {
+      key: '836087cf794a3135edb740659fbeb725'
     }
   };
 
