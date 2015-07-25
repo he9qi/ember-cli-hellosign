@@ -1,6 +1,6 @@
 # HelloSign for Ember
 
-This Ember CLI addon provides a component for adding HelloSign's Embedded Signing functionality to your app. See https://www.hellosign.com/api/embeddedSigningWalkthrough
+This Ember CLI addon provides a component for adding [HelloSign](https://www.hellosign.com)'s Embedded Signing functionality to your app. See https://www.hellosign.com/api/embeddedSigningWalkthrough
 
 ![hellosign](https://cloud.githubusercontent.com/assets/29342/8888288/66aa8030-325c-11e5-8083-21d076f352f0.jpg)
 
