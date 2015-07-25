@@ -11,11 +11,14 @@
     "build": "ember build",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/he9qi/ember-cli-hellosign.git"
+  },
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Qi He <qhe@heyook.com> (https://github.com/he9qi)",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.2",
@@ -36,7 +39,10 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-cli",
+    "hellosign",
+    "e-signature"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
