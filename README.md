@@ -1,25 +1,69 @@
-# Ember-hellosign
+# HelloSign for Ember
 
-This README outlines the details of collaborating on this Ember addon.
+This Ember CLI addon provides a component for adding Stripe checkout functionality to your app. See https://stripe.com/docs/checkout
+
+![hellosign](https://cloud.githubusercontent.com/assets/29342/8888288/66aa8030-325c-11e5-8083-21d076f352f0.jpg)
+
 
 ## Installation
+```sh
+npm install ember-hellosign --save-dev
+```
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+## Setup
+Add your HelloSign **publishable key** to your app's config
 
-## Running
+```javascript
+// config/environment.js
+ENV.HelloSign = {
+  key: "abc"
+};
+```
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+## Usage
 
-## Running Tests
+### Basic Usage
+```handlebars
+{{hello-sign
+  url=signUrl
+}}
+```
 
-* `ember test`
-* `ember test --server`
+### Heavier Usage TODO:
+```handlebars
+{{hello-sign
+  url=signUrl
+  allowCancel=false
+  debug=true
+  skipDomainVerification=true
+  container=document.getElementById('myHSContainer')
+  height=320
+}}
+```
 
-## Building
+## Actions
+- onEventSigned
 
-* `ember build`
+```javascript
+import Ember from 'ember';
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+export default Ember.Controller.extend({
+  actions: {
+    /**
+     * Calls when user signs document.
+     */
+    onEventSigned: function() {
+      // Do stuff after user signs.
+    }
+  }
+});
+```
+
+TODO:
+- onEventCanceled
+- onEventError
+- onEventInvalid
+
+
+## Contributing
+PRs welcome!
