@@ -86,13 +86,13 @@ export default Ember.Component.extend({
       messageListener: function(eventData) {
         switch(eventData.event) {
           case HelloSign.EVENT_SIGNED:
-            self.sendAction('onEventSigned');
+            self.sendAction('onEventSigned', eventData);
             break;
           case HelloSign.EVENT_CANCELED:
             self.sendAction('onEventCanceled');
             break;
           case HelloSign.EVENT_ERROR:
-            self.sendAction('onEventError');
+            self.sendAction('onEventError', eventData);
             break;
           default:
             self.sendAction('onEventInvalid');
