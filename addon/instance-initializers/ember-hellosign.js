@@ -1,8 +1,8 @@
 import Ember from "ember";
 
-export function initialize(container/*, application */) {
-  var config = container.lookupFactory('config:environment');
-  var key = (ENV.config || {}).key;
+export function initialize(instance) {
+  var config = instance.container.lookupFactory('config:environment');
+  var key    = (config.HelloSign || {}).key;
 
   if (Ember.isNone(key)) {
     throw [
