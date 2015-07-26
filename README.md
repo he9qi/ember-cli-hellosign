@@ -68,8 +68,13 @@ export default Ember.Controller.extend({
     /**
      * Calls when user signs document.
      */
-    onEventSigned: function() {
+    onEventSigned: function(data) {
       // Do stuff after user signs.
+      // Data:
+      // {
+      //  signature_id: "63b15d34dad8331f14e3f0d061f6",
+      //  event:  "signature_request_signed"
+      // }
     },
 
     /**
@@ -89,7 +94,7 @@ export default Ember.Controller.extend({
     /**
      * Calls when there's error response.
      */
-    onEventError: function() {
+    onEventError: function(data) {
       // Do stuff
     }
   }
