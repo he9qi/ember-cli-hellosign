@@ -2,7 +2,7 @@
 [![Code Climate][climate-badge]](climate-badge-url)
 [![Build Status][travis-badge]][travis-badge-url]
 [![Ember Observer][emberobserver-badge]][emberobserver-badge-url]
-
+[![npm version][npm-badge]][npm-badge-url]
 
 
 This Ember CLI addon provides a component for adding [HelloSign](https://www.hellosign.com)'s Embedded Signing functionality to your app. See https://www.hellosign.com/api/embeddedSigningWalkthrough
@@ -112,3 +112,5 @@ PRs welcome!
 [climate-badge-url]: https://codeclimate.com/github/he9qi/ember-cli-hellosign
 [emberobserver-badge]: http://emberobserver.com/badges/ember-cli-hellosign.svg
 [emberobserver-badge-url]: http://emberobserver.com/addons/ember-cli-hellosign
+[npm-badge]: https://badge.fury.io/js/ember-cli-hellosign.svg
+[npm-badge-url]: https://badge.fury.io/js/ember-cli-hellosign
