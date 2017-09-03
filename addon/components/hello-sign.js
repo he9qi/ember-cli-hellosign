@@ -1,15 +1,13 @@
-import Ember from 'ember';
-import layout from '../templates/components/hello-sign';
+/* global HelloSign */
 import $ from 'jquery';
+import Ember from 'ember';
+import config from 'ember-get-config';
+import layout from '../templates/components/hello-sign';
+
+const helloSignConfig = config.HelloSign;
 
 export default Ember.Component.extend({
   layout: layout,
-
-  /**
-   * Use service to access ENV.
-   */
-  helloSign: Ember.inject.service(),
-
 
   /**********************************
    * Required attributes
@@ -59,21 +57,23 @@ export default Ember.Component.extend({
    * Initialize HelloSign with api key. Then open embedded
    * HelloSign signing form
    */
-  _initializeHelloSign: Ember.on('init', function() {
-    var self = this;
-    var ENV  = self.get('helloSign');
+  init() {
+    this._super(...arguments);
 
+    let self = this;
     if (Ember.isNone(this.get('url'))) {
-      throw [
+      let message = [
         "SignUrl must be set to use the hello-sign component. You can set the ",
         "key property on the component when instantiating it in your hbs template. ",
         "See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"
       ].join('\n');
+
+      Ember.assert(message);
     }
 
-    HelloSign.init(ENV.get('key'));
+    HelloSign.init(helloSignConfig.key);
 
-    var options = this.getProperties([
+    let options = this.getProperties([
       'allowCancel',
       'url',
       'redirectUrl',
@@ -99,6 +99,5 @@ export default Ember.Component.extend({
         }
       }
     }));
-
-  }),
+  }
 });

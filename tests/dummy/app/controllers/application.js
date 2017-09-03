@@ -1,20 +1,20 @@
 import Ember from 'ember';
 
+const { log } = Ember.Logger;
+
 export default Ember.Controller.extend({
   actions: {
     onEventInvalid: function() {
-      console.log('onEventInvalid');
+      log('onEventInvalid');
     },
     onEventError: function() {
-      console.log('onEventError');
+      log('onEventError');
     },
     onEventSigned: function(data) {
-      console.log('onEventSigned');
-      console.log(data);
+      log('onEventSigned', data);
     },
     onEventCanceled: function(data) {
-      console.log('onEventCanceled');
-      console.log(data);
+      log('onEventCanceled', data);
     }
   }
 });
