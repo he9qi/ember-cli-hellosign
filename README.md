@@ -45,7 +45,23 @@ ENV.HelloSign = {
   height=320
 }}
 ```
-TODO: container
+
+## Options
+
+- `url` - String. The url to open in the child frame
+- `redirectUrl` - String. Where to go after the signature is completed
+- `allowCancel` - Boolean. Whether a cancel button should be displayed (default = true)
+- `userCulture` - One of the HelloSign.CULTURES.supportedCultures (default = HelloSign.CULTURES.EN_US)
+- `debug` - Boolean. When true, debugging statements will be written to the console (default = false)
+- `skipDomainVerification` - Boolean. When true, domain verification step will be skipped if and only if the Signature Request was created with test_mode=1 (default = false)
+- `containerElement` - DOM element that will contain the iframe on the page (default = document.body)
+- `height` - Height of the iFrame (only applicable when a container is specified)
+- `hideHeader` - Boolean. When true, the header will be hidden (default = false). This is only functional for customers with embedded branding enabled.
+- `uxVersion` - Integer. The version of the embedded user experience to display to signers (1 = legacy, 2 = responsive). This option is only honored if your account has accessed the API prior to Nov 14, 2015.
+- `requester` - String. The email of the person issuing a signature request. Required for allowing 'Me + Others' requests
+- `whiteLabelingOptions` - Object. An associative array to be used to customize the app's signer page
+- `healthCheckTimeoutMs` - Integer. The number of milliseconds to wait for a response from the iframe. If no response after that time the iframe will be closed. 15000 milliseconds is recommended.
+
 
 ## Actions
 - onEventSigned
