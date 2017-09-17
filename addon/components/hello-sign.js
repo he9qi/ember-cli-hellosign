@@ -52,6 +52,46 @@ export default Ember.Component.extend({
    */
   height: 640,
 
+  /**
+   * DOM element that will contain the iframe on the page (default = document.body)
+   */
+  containerElement: undefined,
+
+  /**
+   * Integer. The version of the embedded user experience to display to signers
+   * (1 = legacy, 2 = responsive).
+   * This option is only honored if your account has accessed the API prior to Nov 14, 2015.
+   */
+  uxVersion: 2,
+
+  /**
+   * One of the HelloSign.CULTURES.supportedCultures (default = HelloSign.CULTURES.EN_US)
+   */
+  userCulture: HelloSign.CULTURES.EN_US,
+
+  /**
+   * Boolean. When true, the header will be hidden (default = false).
+   * This is only functional for customers with embedded branding enabled.
+   */
+  hideHeader: undefined,
+
+  /**
+   * String. The email of the person issuing a signature request.
+   * Required for allowing 'Me + Others' requests
+   */
+  requester: undefined,
+
+  /**
+   * Object. An associative array to be used to customize the app's signer page
+   */
+  whiteLabelingOptions: undefined,
+
+  /**
+   * Integer. The number of milliseconds to wait for a response from the iframe.
+   * If no response after that time the iframe will be closed.
+   * 15000 milliseconds is recommended.
+   */
+  healthCheckTimeoutMs: undefined,
 
   /**
    * Initialize HelloSign with api key. Then open embedded
@@ -77,10 +117,21 @@ export default Ember.Component.extend({
       'allowCancel',
       'url',
       'redirectUrl',
+      'userCulture',
       'debug',
       'skipDomainVerification',
-      'height'
+      'height',
+      'uxVersion',
+      'hideHeader',
+      'requester',
+      'whiteLabelingOptions',
+      'healthCheckTimeoutMs'
     ]);
+
+    /* Do not conflict with ember's `container` attribute. */
+    if (this.get('containerElement')) {
+      options.container = this.get('containerElement');
+    }
 
     HelloSign.open($.extend(options, {
       messageListener: function(eventData) {
