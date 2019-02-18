@@ -3,7 +3,6 @@ import { assert } from '@ember/debug';
 
 import { isNone } from '@ember/utils';
 import Component from '@ember/component';
-import $ from 'jquery';
 import config from 'ember-get-config';
 import layout from '../templates/components/hello-sign';
 
@@ -103,7 +102,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    let self = this;
     if (isNone(this.get('url'))) {
       let message = [
         "SignUrl must be set to use the hello-sign component. You can set the ",
@@ -136,22 +134,20 @@ export default Component.extend({
       options.container = this.get('containerElement');
     }
 
-    HelloSign.open($.extend(options, {
-      messageListener: function(eventData) {
-        switch(eventData.event) {
-          case HelloSign.EVENT_SIGNED:
-            self.sendAction('onEventSigned', eventData);
-            break;
-          case HelloSign.EVENT_CANCELED:
-            self.sendAction('onEventCanceled');
-            break;
-          case HelloSign.EVENT_ERROR:
-            self.sendAction('onEventError', eventData);
-            break;
-          default:
-            self.sendAction('onEventInvalid');
-        }
+    options.messageListener = (eventData) => {
+      switch(eventData.event) {
+        case HelloSign.EVENT_SIGNED:
+          this.get('onEventSigned')(eventData);
+          break;
+        case HelloSign.EVENT_CANCELED:
+          this.get('onEventCanceled')();
+          break;
+        case HelloSign.EVENT_ERROR:
+          this.get('onEventError')(eventData);
+          break;
+        default:
+          this.get('onEventInvalid')();
       }
-    }));
+    }
   }
 });
