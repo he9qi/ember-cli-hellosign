@@ -1,8 +1,7 @@
-/* eslint-env node */
 'use strict';
 
 module.exports = {
-  name: 'ember-cli-hellosign',
+  name: require('./package').name,
 
   contentFor: function (name) {
     if (name === 'body') {

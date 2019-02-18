@@ -1,12 +1,15 @@
 /* global HelloSign */
+import { assert } from '@ember/debug';
+
+import { isNone } from '@ember/utils';
+import Component from '@ember/component';
 import $ from 'jquery';
-import Ember from 'ember';
 import config from 'ember-get-config';
 import layout from '../templates/components/hello-sign';
 
 const helloSignConfig = config.HelloSign;
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout: layout,
 
   /**********************************
@@ -101,14 +104,14 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     let self = this;
-    if (Ember.isNone(this.get('url'))) {
+    if (isNone(this.get('url'))) {
       let message = [
         "SignUrl must be set to use the hello-sign component. You can set the ",
         "key property on the component when instantiating it in your hbs template. ",
         "See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"
       ].join('\n');
 
-      Ember.assert(message);
+      assert(message);
     }
 
     HelloSign.init(helloSignConfig.key);

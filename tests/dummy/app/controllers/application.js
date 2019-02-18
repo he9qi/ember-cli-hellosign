@@ -1,8 +1,9 @@
+import Controller from '@ember/controller';
 import Ember from 'ember';
 
 const { log } = Ember.Logger;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     onEventInvalid: function() {
       log('onEventInvalid');
