@@ -9,15 +9,18 @@ test('it throws error if Signing URL is not provided', function(assert) {
   assert.expect(1);
 
   let error = [
-    "SignUrl must be set to use the hello-sign component. You can set the ",
-    "key property on the component when instantiating it in your hbs template. ",
-    "See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"
+    'SignUrl must be set to use the hello-sign component. You can set the ',
+    'key property on the component when instantiating it in your hbs template. ',
+    'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
   ].join('\n');
 
-  assert.expectAssertion(() => {
-    this.render(hbs`{{hello-sign}}`)
-  }, error, 'has thrown an Error');
-
+  assert.expectAssertion(
+    () => {
+      this.render(hbs`{{hello-sign}}`);
+    },
+    error,
+    'has thrown an Error'
+  );
 });
 
 test('it renders hellosign embedded frame', function(assert) {

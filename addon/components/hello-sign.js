@@ -20,7 +20,6 @@ export default Component.extend({
    */
   url: null,
 
-
   /**********************************
    * Optional attributes
    **********************************/
@@ -104,9 +103,9 @@ export default Component.extend({
 
     if (isNone(this.get('url'))) {
       let message = [
-        "SignUrl must be set to use the hello-sign component. You can set the ",
-        "key property on the component when instantiating it in your hbs template. ",
-        "See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"
+        'SignUrl must be set to use the hello-sign component. You can set the ',
+        'key property on the component when instantiating it in your hbs template. ',
+        'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
       ].join('\n');
 
       assert(message);
@@ -134,8 +133,8 @@ export default Component.extend({
       options.container = this.get('containerElement');
     }
 
-    options.messageListener = (eventData) => {
-      switch(eventData.event) {
+    options.messageListener = eventData => {
+      switch (eventData.event) {
         case HelloSign.EVENT_SIGNED:
           this.get('onEventSigned')(eventData);
           break;
@@ -148,6 +147,6 @@ export default Component.extend({
         default:
           this.get('onEventInvalid')();
       }
-    }
+    };
   }
 });

@@ -22,7 +22,7 @@ module.exports = function(environment) {
       // when it is created
     },
 
-    HelloSign:  {
+    HelloSign: {
       key: '836087cf794a3135edb740659fbeb725'
     }
   };
