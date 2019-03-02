@@ -3,7 +3,6 @@ import { assert } from '@ember/debug';
 
 import { isNone } from '@ember/utils';
 import Component from '@ember/component';
-import $ from 'jquery';
 import config from 'ember-get-config';
 import layout from '../templates/components/hello-sign';
 
@@ -20,7 +19,6 @@ export default Component.extend({
    * Signature url you fetched via the API on your server
    */
   url: null,
-
 
   /**********************************
    * Optional attributes
@@ -103,12 +101,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    let self = this;
     if (isNone(this.get('url'))) {
       let message = [
-        "SignUrl must be set to use the hello-sign component. You can set the ",
-        "key property on the component when instantiating it in your hbs template. ",
-        "See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"
+        'SignUrl must be set to use the hello-sign component. You can set the ',
+        'key property on the component when instantiating it in your hbs template. ',
+        'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
       ].join('\n');
 
       assert(message);
@@ -136,22 +133,20 @@ export default Component.extend({
       options.container = this.get('containerElement');
     }
 
-    HelloSign.open($.extend(options, {
-      messageListener: function(eventData) {
-        switch(eventData.event) {
-          case HelloSign.EVENT_SIGNED:
-            self.sendAction('onEventSigned', eventData);
-            break;
-          case HelloSign.EVENT_CANCELED:
-            self.sendAction('onEventCanceled');
-            break;
-          case HelloSign.EVENT_ERROR:
-            self.sendAction('onEventError', eventData);
-            break;
-          default:
-            self.sendAction('onEventInvalid');
-        }
+    options.messageListener = eventData => {
+      switch (eventData.event) {
+        case HelloSign.EVENT_SIGNED:
+          this.get('onEventSigned')(eventData);
+          break;
+        case HelloSign.EVENT_CANCELED:
+          this.get('onEventCanceled')();
+          break;
+        case HelloSign.EVENT_ERROR:
+          this.get('onEventError')(eventData);
+          break;
+        default:
+          this.get('onEventInvalid')();
       }
-    }));
+    };
   }
 });
