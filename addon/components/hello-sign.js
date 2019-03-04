@@ -8,6 +8,24 @@ import layout from '../templates/components/hello-sign';
 
 const helloSignConfig = config.HelloSign;
 
+/**
+  A component to open the HelloSign contract. Usage:
+  ```hbs
+  {{hello-sign
+    url=signUrl
+    allowCancel=false
+    debug=true
+    skipDomainVerification=true
+    height=320
+    onEventInvalid=(action "handleEventInvalid")
+    onEventCanceled=(action "handleEventCanceled")
+    onEventError=(action "handleEventError")
+    onEventSigned=(action "handleEventSigned")
+  }}
+  ```
+  @class HelloSign
+  @public
+*/
 export default Component.extend({
   layout: layout,
 
@@ -17,6 +35,8 @@ export default Component.extend({
 
   /**
    * Signature url you fetched via the API on your server
+   @argument url
+   @type String
    */
   url: null,
 
@@ -27,16 +47,22 @@ export default Component.extend({
   /**
    * Whether to allow the user to cancel i.e. close the iFrame
    * without signing (default is true)
+   @argument allowCancel
+   @type Boolean?
    */
   allowCancel: true,
 
   /**
    * Where the user will be redirected after signing
+   @argument redirectUrl
+   @type String?
    */
   redirectUrl: null,
 
   /**
    * Enables debug output to console.log (default is false)
+   @argument debug
+   @type Boolean?
    */
   debug: false,
 
@@ -44,17 +70,23 @@ export default Component.extend({
    * Whether or not to skip the domain verification step
    * (default is false).  This will work only if the Signature
    * Request was created with test_mode=1.
+   @argument skipDomainVerification
+   @type Boolean?
    */
   skipDomainVerification: false,
 
   /**
    * The height of the iFrame in pixels.
    * NOTE: Only applicable when a container is specified.
+   @argument height
+   @type Number?
    */
   height: 640,
 
   /**
    * DOM element that will contain the iframe on the page (default = document.body)
+   @argument containerElement
+   @type String?
    */
   containerElement: undefined,
 
@@ -62,35 +94,75 @@ export default Component.extend({
    * Integer. The version of the embedded user experience to display to signers
    * (1 = legacy, 2 = responsive).
    * This option is only honored if your account has accessed the API prior to Nov 14, 2015.
+   @argument uxVersion
+   @type Number?
    */
   uxVersion: 2,
 
   /**
    * One of the HelloSign.CULTURES.supportedCultures (default = HelloSign.CULTURES.EN_US)
+   @argument userCulture
+   @type String?
    */
   userCulture: HelloSign.CULTURES.EN_US,
 
   /**
-   * Boolean. When true, the header will be hidden (default = false).
+   * When true, the header will be hidden (default = false).
    * This is only functional for customers with embedded branding enabled.
+   @argument hideHeader
+   @type Boolean?
    */
   hideHeader: undefined,
 
   /**
-   * String. The email of the person issuing a signature request.
+   * A callback to handle HelloSign's `canceled` event.
+   @argument onEventCanceled
+   @type Function?
+   */
+  onEventCanceled: undefined,
+
+  /**
+   * A callback to handle HelloSign's `error` event.
+   @argument onEventError
+   @type Function?
+   */
+  onEventError: undefined,
+
+  /**
+   * A callback to handle an invalid event.
+   @argument onEventInvalid
+   @type Function?
+   */
+  onEventInvalid: undefined,
+
+  /**
+   * A callback to handle HelloSign's `signed` event.
+   @argument onEventSigned
+   @type Function?
+   */
+  onEventSigned: undefined,
+
+  /**
+   * The email of the person issuing a signature request.
    * Required for allowing 'Me + Others' requests
+   @argument requester
+   @type String?
    */
   requester: undefined,
 
   /**
-   * Object. An associative array to be used to customize the app's signer page
+   * An associative array to be used to customize the app's signer page
+   @argument whiteLabelingOptions
+   @type {object}
    */
   whiteLabelingOptions: undefined,
 
   /**
-   * Integer. The number of milliseconds to wait for a response from the iframe.
+   * The number of milliseconds to wait for a response from the iframe.
    * If no response after that time the iframe will be closed.
    * 15000 milliseconds is recommended.
+   @argument healthCheckTimeoutMs
+   @type Number?
    */
   healthCheckTimeoutMs: undefined,
 
