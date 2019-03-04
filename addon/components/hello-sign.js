@@ -29,9 +29,7 @@ const helloSignConfig = config.HelloSign;
 export default Component.extend({
   layout: layout,
 
-  /**********************************
-   * Required attributes
-   **********************************/
+  // Required attributes
 
   /**
    * Signature url you fetched via the API on your server
@@ -40,9 +38,7 @@ export default Component.extend({
    */
   url: null,
 
-  /**********************************
-   * Optional attributes
-   **********************************/
+  // Optional attributes
 
   /**
    * Whether to allow the user to cancel i.e. close the iFrame
@@ -166,10 +162,8 @@ export default Component.extend({
    */
   healthCheckTimeoutMs: undefined,
 
-  /**
-   * Initialize HelloSign with api key. Then open embedded
-   * HelloSign signing form
-   */
+  // initialize HelloSign with api key
+  // then open embedded HelloSign signing form
   init() {
     this._super(...arguments);
 
