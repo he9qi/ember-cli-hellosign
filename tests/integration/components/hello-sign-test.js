@@ -23,6 +23,8 @@ module('Integration | Component | hello sign', function(hooks) {
   test('it throws error if Signing URL is not provided', async function(assert) {
     assert.expect(1);
 
+    await this.owner.lookup('service:hello-sign').load();
+
     let expectedMessage = 'SignUrl must be set to use the hello-sign component';
 
     // https://github.com/workmanw/ember-qunit-assert-helpers/issues/18

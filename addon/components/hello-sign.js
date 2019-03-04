@@ -1,8 +1,9 @@
-/* global HelloSign */
 import { assert } from '@ember/debug';
 
 import { isNone } from '@ember/utils';
 import Component from '@ember/component';
+import { reads } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import config from 'ember-get-config';
 import layout from '../templates/components/hello-sign';
 
@@ -28,6 +29,10 @@ const helloSignConfig = config.HelloSign;
 */
 export default Component.extend({
   layout: layout,
+
+  helloSignLoader: service('hello-sign'),
+
+  hellosign: reads('helloSignLoader.hellosign'),
 
   // Required attributes
 
@@ -100,7 +105,7 @@ export default Component.extend({
    @argument userCulture
    @type String?
    */
-  userCulture: HelloSign.CULTURES.EN_US,
+  userCulture: undefined,
 
   /**
    * When true, the header will be hidden (default = false).
@@ -177,7 +182,11 @@ export default Component.extend({
       assert(message);
     }
 
-    HelloSign.init(helloSignConfig.key);
+    this.get('hellosign').init(helloSignConfig.key);
+
+    if (!this.get('userCulture')) {
+      this.set('userCulture', this.get('hellosign').CULTURES.EN_US);
+    }
 
     let options = this.getProperties([
       'allowCancel',
@@ -201,13 +210,13 @@ export default Component.extend({
 
     options.messageListener = eventData => {
       switch (eventData.event) {
-        case HelloSign.EVENT_SIGNED:
+        case this.hellosign.EVENT_SIGNED:
           this.get('onEventSigned')(eventData);
           break;
-        case HelloSign.EVENT_CANCELED:
+        case this.hellosign.EVENT_CANCELED:
           this.get('onEventCanceled')();
           break;
-        case HelloSign.EVENT_ERROR:
+        case this.hellosign.EVENT_ERROR:
           this.get('onEventError')(eventData);
           break;
         default:
@@ -215,6 +224,6 @@ export default Component.extend({
       }
     };
 
-    HelloSign.open(options);
+    this.get('hellosign').open(options);
   }
 });
