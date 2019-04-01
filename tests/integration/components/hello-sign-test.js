@@ -1,50 +1,62 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import Ember from 'ember';
+import { module, test } from 'qunit';
+import { render, waitUntil } from '@ember/test-helpers';
+import { setupRenderingTest } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('hello-sign', 'Integration | Component | hello sign', {
-  integration: true
-});
+let waitForError = options => {
+  const orig = Ember.onerror;
 
-test('it throws error if Signing URL is not provided', function(assert) {
-  assert.expect(1);
+  let error = null;
+  Ember.onerror = err => {
+    error = err;
+  };
 
-  let error = [
-    'SignUrl must be set to use the hello-sign component. You can set the ',
-    'key property on the component when instantiating it in your hbs template. ',
-    'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
-  ].join('\n');
+  return waitUntil(() => error, options).finally(() => {
+    Ember.onerror = orig;
+  });
+};
 
-  assert.expectAssertion(
-    () => {
-      this.render(hbs`{{hello-sign}}`);
-    },
-    error,
-    'has thrown an Error'
-  );
-});
+module('Integration | Component | hello sign', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders hellosign embedded frame', function(assert) {
-  assert.expect(0);
+  test('it throws error if Signing URL is not provided', async function(assert) {
+    assert.expect(1);
 
-  // TODO: how to wait for third party JS to complete
-  // this.set('url', "https://www.hellosign.com/editor/embeddedSign");
-  // this.render(hbs`{{hello-sign url=url}}`);
-  //
-  // assert.equal(this.$("#hsEmbeddedOverlay").length, 1);
-});
+    let expectedMessage = 'SignUrl must be set to use the hello-sign component';
 
-test('it sends onEventInvalid action', function(assert) {
-  assert.expect(0);
+    // https://github.com/workmanw/ember-qunit-assert-helpers/issues/18
+    const [err] = await Promise.all([
+      waitForError(),
+      render(hbs`{{hello-sign}}`)
+    ]);
 
-  // TODO: how to wait for third party JS to complete
-  // this.set('url', "https://www.hellosign.com/editor/embeddedSign");
-  // this.on('onEventInvalid', function() {
-  //   assert.ok(true);
-  // });
-  //
-  // this.render(hbs`
-  //   {{hello-sign
-  //     url=url
-  //     onEventInvalid='onEventInvalid'}}
-  //   `);
+    assert.ok(err.message.includes(expectedMessage));
+  });
+
+  test('it renders hellosign embedded frame', function(assert) {
+    assert.expect(0);
+
+    // TODO: how to wait for third party JS to complete
+    // this.set('url', "https://www.hellosign.com/editor/embeddedSign");
+    // this.render(hbs`{{hello-sign url=url}}`);
+    //
+    // assert.equal(this.$("#hsEmbeddedOverlay").length, 1);
+  });
+
+  test('it sends onEventInvalid action', function(assert) {
+    assert.expect(0);
+
+    // TODO: how to wait for third party JS to complete
+    // this.set('url', "https://www.hellosign.com/editor/embeddedSign");
+    // this.on('onEventInvalid', function() {
+    //   assert.ok(true);
+    // });
+    //
+    // this.render(hbs`
+    //   {{hello-sign
+    //     url=url
+    //     onEventInvalid='onEventInvalid'}}
+    //   `);
+  });
 });
