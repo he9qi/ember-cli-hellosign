@@ -4,5 +4,17 @@
     "name": "master",
     "sha": "2d3bfcf02f1baa473310b904887564419a1e2c66",
     "tag": null
+  },
+  "v0.0.7": {
+    "path": "versions/v0.0.7",
+    "name": "v0.0.7",
+    "sha": "2d3bfcf02f1baa473310b904887564419a1e2c66",
+    "tag": "v0.0.7"
+  },
+  "-latest": {
+    "path": "",
+    "name": "Latest",
+    "sha": "2d3bfcf02f1baa473310b904887564419a1e2c66",
+    "tag": "v0.0.7"
   }
 }
