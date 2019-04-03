@@ -1,17 +1,10 @@
-# Quick Start
+# Installation
 
-## Installation
-
+The addon may be installed through:
 ```
 ember install ember-cli-hellosign
 ```
 
-## Setup
-Add your HelloSign **publishable key** to your app's config
-
-
-{{#docs-snippet name='config-environment.js' language='javascript' title='config/environment.js'}}
-  ENV.HelloSign = {
-    key: "abc"
-  };
-{{/docs-snippet}}
+It could be installed directly via `yarn add -D ember-cli-hellosign` /
+`npm install --save-dev ember-cli-hellosign` as well. Inded, it does not contain
+any ember-specific blueprint.
