@@ -1,13 +1,10 @@
 import { assert } from '@ember/debug';
-
 import { isNone } from '@ember/utils';
 import Component from '@ember/component';
+import { getOwner } from '@ember/application';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import config from 'ember-get-config';
 import layout from '../templates/components/hello-sign';
-
-const helloSignConfig = config.HelloSign;
 
 /**
   A component to open the HelloSign contract. Usage:
@@ -182,7 +179,8 @@ export default Component.extend({
       assert(message);
     }
 
-    this.get('hellosign').init(helloSignConfig.key);
+    const config = getOwner(this).resolveRegistration('config:environment');
+    this.get('hellosign').init(config.HelloSign.key);
 
     if (!this.get('userCulture')) {
       this.set('userCulture', this.get('hellosign').CULTURES.EN_US);
