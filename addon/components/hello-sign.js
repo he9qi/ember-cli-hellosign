@@ -1,7 +1,5 @@
 import { assert } from '@ember/debug';
-import { isNone } from '@ember/utils';
 import Component from '@ember/component';
-import { getOwner } from '@ember/application';
 import { reads } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import layout from '../templates/components/hello-sign';
@@ -11,6 +9,7 @@ import layout from '../templates/components/hello-sign';
   ```hbs
   {{hello-sign
     url=signUrl
+    key=key
     allowCancel=false
     debug=true
     skipDomainVerification=true
@@ -39,6 +38,13 @@ export default Component.extend({
    @type String
    */
   url: null,
+
+  /**
+   * You HelloSign publishable key.
+   @argument key
+   @type String
+   */
+  key: null,
 
   // Optional attributes
 
@@ -169,18 +175,18 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    if (isNone(this.get('url'))) {
-      let message = [
-        'SignUrl must be set to use the hello-sign component. You can set the ',
-        'key property on the component when instantiating it in your hbs template. ',
-        'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
-      ].join('\n');
+    let signUrlMissingMessage = [
+      'SignUrl must be set to use the hello-sign component. You can set the ',
+      'key property on the component when instantiating it in your hbs template. ',
+      'See how to get SignUrl at https://www.hellosign.com/home/myAccount#api'
+    ].join('\n');
+    assert(signUrlMissingMessage, this.get('url'));
 
-      assert(message);
-    }
+    let keyMissingMessage =
+      'Your HelloSign publishable key seems to be missing. It is required.';
+    assert(keyMissingMessage, this.get('key'));
 
-    const config = getOwner(this).resolveRegistration('config:environment');
-    this.get('hellosign').init(config.HelloSign.key);
+    this.get('hellosign').init(this.get('key'));
 
     if (!this.get('userCulture')) {
       this.set('userCulture', this.get('hellosign').CULTURES.EN_US);

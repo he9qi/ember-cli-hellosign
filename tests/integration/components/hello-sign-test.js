@@ -30,7 +30,23 @@ module('Integration | Component | hello sign', function(hooks) {
     // https://github.com/workmanw/ember-qunit-assert-helpers/issues/18
     const [err] = await Promise.all([
       waitForError(),
-      render(hbs`{{hello-sign}}`)
+      render(hbs`{{hello-sign key='hs-key'}}`)
+    ]);
+
+    assert.ok(err.message.includes(expectedMessage));
+  });
+
+  test('it throws error if key is not provided', async function(assert) {
+    assert.expect(1);
+
+    await this.owner.lookup('service:hello-sign').load();
+
+    let expectedMessage = 'Your HelloSign publishable key seems to be missing';
+
+    // https://github.com/workmanw/ember-qunit-assert-helpers/issues/18
+    const [err] = await Promise.all([
+      waitForError(),
+      render(hbs`{{hello-sign url='random-url'}}`)
     ]);
 
     assert.ok(err.message.includes(expectedMessage));
