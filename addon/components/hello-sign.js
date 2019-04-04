@@ -214,5 +214,7 @@ export default Component.extend({
           this.get('onEventInvalid')();
       }
     };
+
+    HelloSign.open(options);
   }
 });
