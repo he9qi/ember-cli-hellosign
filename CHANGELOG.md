@@ -1,5 +1,16 @@
 # Change Log
 
+## v0.0.8 (2019-04-04)
+
+#### :bug: Bug Fix
+* [#18](https://github.com/he9qi/ember-cli-hellosign/pull/18) Add back missing line from jQuery removal ([@dcyriller](https://github.com/dcyriller))
+
+#### :house: Internal
+* [#17](https://github.com/he9qi/ember-cli-hellosign/pull/17) Upgrade test suite and test packages ([@dcyriller](https://github.com/dcyriller))
+
+#### Committers: 1
+- Cyrille David ([@dcyriller](https://github.com/dcyriller))
+
 ## v0.0.7 (2019-04-01)
 
 #### :memo: Documentation
