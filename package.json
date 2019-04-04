@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-hellosign",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An Ember.js component to add HelloSign service to your app.",
   "keywords": [
     "ember-addon",
