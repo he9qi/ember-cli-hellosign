@@ -5,7 +5,10 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     babel: {
-      plugins: [require('ember-auto-import/babel-plugin')]
+      plugins: [require.resolve('ember-auto-import/babel-plugin')]
+    },
+    'ember-cli-babel': {
+      throwUnlessParallelizable: true
     }
   });
 
