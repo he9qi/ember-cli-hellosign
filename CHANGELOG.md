@@ -1,5 +1,14 @@
 # Change Log
 
+## v0.1.0 (2019-04-29)
+
+#### :boom: Breaking Change
+* [#19](https://github.com/he9qi/ember-cli-hellosign/pull/19) Pass API key to hello-sign component ([@dcyriller](https://github.com/dcyriller))
+* [#13](https://github.com/he9qi/ember-cli-hellosign/pull/13) Use ember-auto-import to lazy load the script ([@dcyriller](https://github.com/dcyriller))
+
+#### Committers: 1
+- Cyrille David ([@dcyriller](https://github.com/dcyriller))
+
 ## v0.0.8 (2019-04-04)
 
 #### :bug: Bug Fix
