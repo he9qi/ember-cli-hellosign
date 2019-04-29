@@ -4506,18 +4506,17 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"AUy1vOYA",block:'{"symbols":["&default"],"statements":[[14,1],[0,"\\n"]],"hasEval":false}',meta:{moduleName:"ember-cli-clipboard/templates/components/copy-button.hbs"}})
 e.default=t}),define("ember-cli-hellosign/components/hello-sign",["exports","ember-cli-hellosign/templates/components/hello-sign"],function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var r=Ember.Component.extend({layout:t.default,helloSignLoader:Ember.inject.service("hello-sign"),hellosign:Ember.computed.reads("helloSignLoader.hellosign"),url:null,allowCancel:!0,redirectUrl:null,debug:!1,skipDomainVerification:!1,height:640,containerElement:void 0,uxVersion:2,userCulture:void 0,hideHeader:void 0,onEventCanceled:void 0,onEventError:void 0,onEventInvalid:void 0,onEventSigned:void 0,requester:void 0,whiteLabelingOptions:void 0,healthCheckTimeoutMs:void 0,init:function(){var e=this
-if(this._super.apply(this,arguments),Ember.isNone(this.get("url")))["SignUrl must be set to use the hello-sign component. You can set the ","key property on the component when instantiating it in your hbs template. ","See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"].join("\n")
-var t=Ember.getOwner(this).resolveRegistration("config:environment")
-this.get("hellosign").init(t.HelloSign.key),this.get("userCulture")||this.set("userCulture",this.get("hellosign").CULTURES.EN_US)
-var r=this.getProperties(["allowCancel","url","redirectUrl","userCulture","debug","skipDomainVerification","height","uxVersion","hideHeader","requester","whiteLabelingOptions","healthCheckTimeoutMs"])
-this.get("containerElement")&&(r.container=this.get("containerElement")),r.messageListener=function(t){switch(t.event){case e.hellosign.EVENT_SIGNED:e.get("onEventSigned")(t)
+var r=Ember.Component.extend({layout:t.default,helloSignLoader:Ember.inject.service("hello-sign"),hellosign:Ember.computed.reads("helloSignLoader.hellosign"),url:null,key:null,allowCancel:!0,redirectUrl:null,debug:!1,skipDomainVerification:!1,height:640,containerElement:void 0,uxVersion:2,userCulture:void 0,hideHeader:void 0,onEventCanceled:void 0,onEventError:void 0,onEventInvalid:void 0,onEventSigned:void 0,requester:void 0,whiteLabelingOptions:void 0,healthCheckTimeoutMs:void 0,init:function(){var e=this
+this._super.apply(this,arguments);["SignUrl must be set to use the hello-sign component. You can set the ","key property on the component when instantiating it in your hbs template. ","See how to get SignUrl at https://www.hellosign.com/home/myAccount#api"].join("\n")
+this.get("hellosign").init(this.get("key")),this.get("userCulture")||this.set("userCulture",this.get("hellosign").CULTURES.EN_US)
+var t=this.getProperties(["allowCancel","url","redirectUrl","userCulture","debug","skipDomainVerification","height","uxVersion","hideHeader","requester","whiteLabelingOptions","healthCheckTimeoutMs"])
+this.get("containerElement")&&(t.container=this.get("containerElement")),t.messageListener=function(t){switch(t.event){case e.hellosign.EVENT_SIGNED:e.get("onEventSigned")(t)
 break
 case e.hellosign.EVENT_CANCELED:e.get("onEventCanceled")()
 break
 case e.hellosign.EVENT_ERROR:e.get("onEventError")(t)
 break
-default:e.get("onEventInvalid")()}},this.get("hellosign").open(r)}})
+default:e.get("onEventInvalid")()}},this.get("hellosign").open(t)}})
 e.default=r}),define("ember-cli-hellosign/services/hello-sign",["exports"],function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.Service.extend({hellosign:null,load:function(){var e=this
